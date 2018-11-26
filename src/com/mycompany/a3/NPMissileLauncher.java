@@ -17,7 +17,7 @@ public class NPMissileLauncher extends MissileLauncher{
 	}
 
 	@Override
-	public void handleCollision(GameObject o) {
+	public void handleCollision() {
 		// TODO Auto-generated method stub
 		
 	}

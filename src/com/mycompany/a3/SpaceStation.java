@@ -17,6 +17,7 @@ public class SpaceStation extends FixGameObject {
 		blinkRate = ran.nextInt(4) + 1;
 		lightStatus = true;
 		setColor(ColorUtil.YELLOW);
+		setSize(50);
 	}
 	public void fillMissile(PlayerShip ps)
 	{
@@ -61,12 +62,8 @@ public class SpaceStation extends FixGameObject {
 		
 	}
 	@Override
-	public void handleCollision(GameObject o) {
+	public void handleCollision() {
 		// TODO Auto-generated method stub
-		if (o instanceof PlayerShip)
-		{
-			PlayerShip p = (PlayerShip)o;
-			p.reload();
-		}
+		
 	}
 }

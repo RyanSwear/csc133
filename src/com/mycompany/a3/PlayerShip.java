@@ -15,6 +15,7 @@ public class PlayerShip extends Ship implements ISteerable{
 		setColor(ColorUtil.GREEN);
 		setLocation(512,384);
 		missileCount = 10;
+		setSize(10);
 	}
 	public void fireMissile()
 	{
@@ -85,11 +86,8 @@ public class PlayerShip extends Ship implements ISteerable{
 		g.drawLine((int)a.getX(),(int)a.getY() - (int)point.getY() - (int)R + (int)r/2, (int)c.getX(), (int)c.getY() - (int)point.getY() - (int)R + (int)r/2);
 	}
 	@Override
-	public void handleCollision(GameObject o) {
+	public void handleCollision() {
 		// TODO Auto-generated method stub
-		if (o instanceof Asteroid)
-		{
-			
-		}
+		
 	}
 }

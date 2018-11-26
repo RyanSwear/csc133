@@ -8,7 +8,7 @@ import com.codename1.ui.geom.Point2D;
 
 public class NonPlayerShip extends Ship{
 	private NPMissileLauncher ml;
-	private int size;
+	
 	Random ran = new Random();
 	NonPlayerShip()
 	{
@@ -17,18 +17,18 @@ public class NonPlayerShip extends Ship{
 		setColor(ColorUtil.rgb(255, 0, 0));
 		if (i == 0)
 		{
-			size = 10;
+			setSize(10);
 		}
 		else
 		{
-			size = 20;
+			setSize(20);
 		}
 	}
 	
 
 	public String toString()
 	{
-		String s = "Non-Player Ship: loc=" + getX() + ", " + getY() + " color= " + getColor() + " speed= " + getSpeed() + " dir= " + getDirection() + " size: " + size;
+		String s = "Non-Player Ship: loc=" + getX() + ", " + getY() + " color= " + getColor() + " speed= " + getSpeed() + " dir= " + getDirection() + " size: " + getSize();
 		return s;
 	}
 
@@ -49,7 +49,7 @@ public class NonPlayerShip extends Ship{
 
 
 	@Override
-	public void handleCollision(GameObject o) {
+	public void handleCollision() {
 		// TODO Auto-generated method stub
 		
 	}

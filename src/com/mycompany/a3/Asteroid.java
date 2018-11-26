@@ -7,19 +7,19 @@ import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point2D;
 
 public class Asteroid extends MoveObject{
-	int size;
+	
 
 		Asteroid()
 		{
 			Random ran = new Random();
-			size = ran.nextInt(30) + 6;
+			setSize(ran.nextInt(30) + 6);
 			setColor(ColorUtil.LTGRAY);
 		}
 	
 	
 	public String toString()
 	{
-		String s ="Asteroid: loc=" + getX() + ", " + getY() + " color=" + getColor() + " speed= " + getSpeed() + " dir=" + getDirection() + " size= " + size;
+		String s ="Asteroid: loc=" + getX() + ", " + getY() + " color=" + getColor() + " speed= " + getSpeed() + " dir=" + getDirection() + " size= " + getSize();
 		return s;
 	}
 
@@ -32,7 +32,7 @@ public class Asteroid extends MoveObject{
 
 
 	@Override
-	public void handleCollision(GameObject o) {
+	public void handleCollision() {
 		// TODO Auto-generated method stub
 		
 	}

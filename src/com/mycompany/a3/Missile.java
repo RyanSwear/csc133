@@ -13,6 +13,7 @@ public class Missile extends MoveObject{
 		fuelLevel = 3;
 		setSpeed(5);
 		setColor(ColorUtil.CYAN);
+		setSize(6);
 	}
 	public void decrementFuel()
 	{
@@ -58,7 +59,7 @@ public class Missile extends MoveObject{
 		
 	}
 	@Override
-	public void handleCollision(GameObject o) {
+	public void handleCollision() {
 		// TODO Auto-generated method stub
 		
 	}

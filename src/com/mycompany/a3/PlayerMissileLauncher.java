@@ -44,7 +44,7 @@ public class PlayerMissileLauncher extends MissileLauncher implements ISteerable
 		
 	}
 	@Override
-	public void handleCollision(GameObject o) {
+	public void handleCollision() {
 		// TODO Auto-generated method stub
 		
 	}

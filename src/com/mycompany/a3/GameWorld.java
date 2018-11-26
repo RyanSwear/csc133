@@ -857,6 +857,13 @@ public class GameWorld extends Observable implements  IGameWorld{
 				}
 			}
 		}
+		
+		for(int k = 0; k < rObjs.size(); k++)
+		{
+			GameObject o = rObjs.elementAt(k);
+			o.handleCollision();
+			go.remove(o);
+		}
 	}
 	
 }

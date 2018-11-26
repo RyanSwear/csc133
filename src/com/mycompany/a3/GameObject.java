@@ -55,6 +55,14 @@ abstract class GameObject implements IDrawable, ICollider{
 		location.setX(x);
 		location.setY(y);
 	}
+	public void setSize(int i)
+	{
+		size = i;
+	}
+	public int getSize()
+	{
+		return size;
+	}
 	//public Graphics getGraphic()
 	//{
 		//return g;
@@ -76,7 +84,7 @@ abstract class GameObject implements IDrawable, ICollider{
 		return result;
 		
 	}
-	public abstract void handleCollision(GameObject o);
+	public abstract void handleCollision();
 	
 	
 }

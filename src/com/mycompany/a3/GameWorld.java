@@ -809,6 +809,7 @@ public class GameWorld extends Observable implements  IGameWorld{
 				{
 					if ((o instanceof Asteroid) && (k instanceof Asteroid))
 					{
+						
 						rObjs.add(o);
 						rObjs.add(k);
 					}

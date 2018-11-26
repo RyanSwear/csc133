@@ -71,7 +71,10 @@ abstract class GameObject implements IDrawable, ICollider{
 	public boolean collidesWith(GameObject o)
 	{
 		boolean result = false;
-		
+		if (this.equals(o))
+		{
+			return false;
+		}
 		int dx = (int)this.getX() - (int)o.getX();
 		int dy = (int)this.getY() - (int)o.getY();
 		int distanceBW = (dx*dx + dy*dy);

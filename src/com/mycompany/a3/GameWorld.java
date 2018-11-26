@@ -794,4 +794,69 @@ public class GameWorld extends Observable implements  IGameWorld{
 		init();
 	}
 	
+	public void checkCollisions()
+	{
+		Vector<GameObject> rObjs = new Vector<GameObject>();
+		IIterator i = go.getIterator();
+		while(i.hasNext())
+		{
+			GameObject o = (GameObject)i.getNext();
+			IIterator j = go.getIterator();
+			while (j.hasNext())
+			{
+				GameObject k = (GameObject)j.getNext();
+				if (o.collidesWith(k))
+				{
+					if ((o instanceof Asteroid) && (k instanceof Asteroid))
+					{
+						rObjs.add(o);
+						rObjs.add(k);
+					}
+					if ((o instanceof Asteroid) && (k instanceof Missile))
+					{
+						Missile m = (Missile)k;
+						if (m.owner == 'P')
+						{
+							gameScore++;
+						}
+						rObjs.add(o);
+						rObjs.add(k);
+					}
+					if ((o instanceof NonPlayerShip) && (k instanceof Missile))
+					{
+						Missile m = (Missile)k;
+						if (m.owner == 'P')
+						{
+							gameScore++;
+						}
+						rObjs.add(o);
+						rObjs.add(k);
+					}
+					if ((o instanceof NonPlayerShip) && (k instanceof NonPlayerShip))
+					{
+						rObjs.add(o);
+						rObjs.add(k);
+					}
+					if ((o instanceof PlayerShip) && (k instanceof Asteroid))
+					{
+						rObjs.add(o);
+						rObjs.add(k);
+						lives--;
+					}
+					if ((o instanceof PlayerShip) && (k instanceof NonPlayerShip))
+					{
+						rObjs.add(o);
+						rObjs.add(k);
+						lives--;
+					}
+					if ((o instanceof SpaceStation) && (k instanceof PlayerShip))
+					{
+						PlayerShip p = (PlayerShip)k;
+						p.reload();
+					}
+				}
+			}
+		}
+	}
+	
 }

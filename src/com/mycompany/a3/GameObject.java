@@ -6,7 +6,7 @@ import com.codename1.ui.geom.Point2D;
 import java.util.Random;
 abstract class GameObject implements IDrawable, ICollider{
 	private Point2D location = new Point2D(0,0);
-	private int color;
+	private int color, size;
 	//private Graphics g;
 	
 	
@@ -60,9 +60,21 @@ abstract class GameObject implements IDrawable, ICollider{
 		//return g;
 	//}
 	public abstract void draw(Graphics g, Point2D pCmpRelPrnt);
-	public boolean collidesWith()
+	public boolean collidesWith(GameObject o)
 	{
-		return false;
+		boolean result = false;
+		
+		int dx = (int)this.getX() - (int)o.getX();
+		int dy = (int)this.getY() - (int)o.getY();
+		int distanceBW = (dx*dx + dy*dy);
+		
+		int thisR = this.size/2;
+		int oR = o.size/2;
+		int radiiSqr = ((thisR * thisR) + (2*thisR * oR) + (oR * oR));
+		
+		if (distanceBW <= radiiSqr) {result = true;}
+		return result;
+		
 	}
 	public abstract void handleCollision(GameObject o);
 	

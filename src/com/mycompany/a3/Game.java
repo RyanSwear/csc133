@@ -129,7 +129,7 @@ class Game extends Form implements Runnable{
 			//gw.addNPS();
 		}
 		gw.tickClock(System.currentTimeMillis() - start);
-		
+		gw.checkCollisions();
 	}
 	
 	

@@ -23,6 +23,7 @@ public class NonPlayerShip extends Ship{
 		{
 			setSize(20);
 		}
+		setSpeed(2);
 	}
 	
 
@@ -45,6 +46,9 @@ public class NonPlayerShip extends Ship{
 		g.drawLine((int)b.getX(),(int)b.getY() - (int)point.getY() - (int)R + (int)r/2, (int)c.getX(), (int)c.getY()- (int)point.getY() - (int)R + (int)r/2);
 		g.drawLine((int)a.getX(),(int)a.getY() - (int)point.getY() - (int)R + (int)r/2, (int)c.getX(), (int)c.getY() - (int)point.getY() - (int)R + (int)r/2);
 		
+		double theta = (ml.getDirection() - 90) * 3.14159 / 180;
+		g.setColor(ColorUtil.WHITE);
+		g.drawLine((int)this.getX(), (int)this.getY() - (int)point.getY() - (int)R - 30, (int)this.getX() + (int)(15 * Math.cos(theta)), (int)(this.getY() - (int)point.getY() - (int)R  - 30)+ (int)(15 * Math.sin(theta)));
 	}
 
 

@@ -12,7 +12,8 @@ abstract class MoveObject extends GameObject implements IMoveable {
 	}
 	public void move()
 	{
-		this.setLoc(getX() + Math.cos(direction * (3.14159/180))*speed, getY() + Math.sin(direction*(3.14159/180))*speed);
+		double theta = direction - 90;//flipped due to cn1 y coordinate being flipped
+		this.setLoc(getX() + Math.cos(theta * (3.14159/180))*speed, getY() + Math.sin(theta * (3.14159/180))*speed);
 	}
 	public void increaseSpeed(int i)
 	{

@@ -13,7 +13,7 @@ public class Missile extends MoveObject{
 		fuelLevel = 3;
 		setSpeed(5);
 		setColor(ColorUtil.CYAN);
-		setSize(6);
+		setSize(10);
 	}
 	public void decrementFuel()
 	{

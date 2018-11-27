@@ -27,7 +27,7 @@ public class Asteroid extends MoveObject{
 	@Override
 	public void draw(Graphics g, Point2D point) {
 		// TODO Auto-generated method stub
-		g.fillArc((int)this.getX() - 10, (int)this.getY() - (int)point.getY() - 10, 20, 20, 0, 360);
+		g.fillArc((int)this.getX() - (getSize()/2), (int)this.getY() - (int)point.getY() - (getSize()/2), getSize(), getSize(), 0, 360);
 	}
 
 

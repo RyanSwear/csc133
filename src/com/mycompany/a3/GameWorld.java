@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Random;
 import java.util.Vector;
 
+import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point2D;
 public class GameWorld extends Observable implements  IGameWorld{
@@ -112,6 +113,10 @@ public class GameWorld extends Observable implements  IGameWorld{
 	}
 	public void addPS()
 	{
+		if (lives == 0)
+		{
+			return;
+		}
 		IIterator i = go.getIterator();
 		while(i.hasNext())
 		{
@@ -255,6 +260,8 @@ public class GameWorld extends Observable implements  IGameWorld{
 				Missile m = new Missile();
 				m.setDirection(nps.getDirection());
 				m.setLocation(nps.getX(), nps.getY());
+				m.setColor(ColorUtil.MAGENTA);
+				m.setSpeed(5);
 				//set direction, loc
 				go.add(m);
 				System.out.println("NPS fired Missile.");
@@ -829,9 +836,11 @@ public class GameWorld extends Observable implements  IGameWorld{
 						if (m.owner == 'P')
 						{
 							gameScore++;
+							rObjs.add(o);
+							rObjs.add(k);
 						}
-						rObjs.add(o);
-						rObjs.add(k);
+					
+						
 					}
 					if ((o instanceof NonPlayerShip) && (k instanceof NonPlayerShip))
 					{
@@ -849,6 +858,17 @@ public class GameWorld extends Observable implements  IGameWorld{
 						rObjs.add(o);
 						rObjs.add(k);
 						lives--;
+					}
+					if ((o instanceof PlayerShip) && (k instanceof Missile))
+					{
+						Missile m = (Missile)k;
+						if (m.owner == 'N')
+						{
+							rObjs.add(o);
+							rObjs.add(k);
+							lives--;
+						}
+						
 					}
 					if ((o instanceof SpaceStation) && (k instanceof PlayerShip))
 					{

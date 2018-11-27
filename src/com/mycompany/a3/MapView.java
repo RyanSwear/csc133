@@ -80,7 +80,12 @@ public class MapView extends Container implements Observer{
 			}
 			
 			goD.draw(g, d);
-			
+			if (gwp.getLives() == 0)
+			{
+				String s = "Out of Lives, reset to play again";
+				g.setColor(ColorUtil.CYAN);
+				g.drawChars(s.toCharArray(), 0, s.length(), 240, 300);
+			}
 		}
 	}
 }

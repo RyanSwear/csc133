@@ -122,11 +122,17 @@ class Game extends Form implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		Random ran = new Random();
-		int r = ran.nextInt()*100 + 1;
-		if (r > 99)
+		int r = ran.nextInt(100);
+		if (r > 98)
 		{
 			//System.out.println(r);
-			//gw.addNPS();
+			gw.addNPS();
+			gw.addAsteroid();
+		}
+		
+		if (r < 3)
+		{
+			gw.launchNPSMissiles();
 		}
 		gw.tickClock(System.currentTimeMillis() - start);
 		gw.checkCollisions();

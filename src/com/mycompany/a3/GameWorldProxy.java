@@ -13,7 +13,15 @@ public class GameWorldProxy extends Observable implements IGameWorld{
 		//init();
 	}
 
+	public void changePause()
+	{
+		realGameWorld.changePause();
+	}
 	
+	public boolean getPause()
+	{
+		return realGameWorld.getPause();
+	}
 	public Point2D getMins()
 	{
 		return realGameWorld.getMins();

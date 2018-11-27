@@ -17,6 +17,9 @@ public class GameWorld extends Observable implements  IGameWorld{
 	
 	private GameCollection go;
 	private boolean soundOn = true;
+	private boolean pause = false;
+	
+	BGSound sound = new BGSound("rg_hum.wav");
 	
 	public GameWorld()
 	{
@@ -24,6 +27,7 @@ public class GameWorld extends Observable implements  IGameWorld{
 		
 		this.setChanged();
 		this.notifyObservers(new GameWorldProxy(this));
+		sound.run();
 		//initialize the world and notify observers that objects have been created
 	}
 	public void displayGameDimension()
@@ -40,6 +44,21 @@ public class GameWorld extends Observable implements  IGameWorld{
 	{
 		mins.setHeight(y);
 		mins.setWidth(x);
+	}
+	public void changePause()
+	{
+		if(pause == true)
+		{
+			pause = false;
+		}
+		else
+		{
+			pause = true;
+		}
+	}
+	public boolean getPause()
+	{
+		return pause;
 	}
 	public Point2D getMins()
 	{
@@ -240,6 +259,12 @@ public class GameWorld extends Observable implements  IGameWorld{
 					System.out.println("Player Fired Missile.");
 					this.setChanged();
 					this.notifyObservers(new GameWorldProxy(this));
+					
+					MissileSound ms = new MissileSound("stinger.wav");
+					if (soundOn)
+					{
+						ms.play();
+					}
 
 				}
 				else
@@ -268,6 +293,12 @@ public class GameWorld extends Observable implements  IGameWorld{
 			}//tell all nps to add a missile to game collection
 		this.setChanged();
 		this.notifyObservers(new GameWorldProxy(this));
+		
+		MissileSound ms = new MissileSound("stinger.wav");
+		if (soundOn)
+		{
+			ms.play();
+		}
 	}
 	public void jumpToHyperSpace()
 	{//call player ship setLocation function
@@ -787,10 +818,15 @@ public class GameWorld extends Observable implements  IGameWorld{
 	{
 		if (soundOn == true)
 		{
+			sound.stop();
 			soundOn = false;
 		}
 		else
+		{
+			sound.run();
 			soundOn = true;
+		}
+			
 		
 		this.setChanged();
 		this.notifyObservers(new GameWorldProxy(this));

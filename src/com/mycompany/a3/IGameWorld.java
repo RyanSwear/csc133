@@ -19,6 +19,8 @@ public interface IGameWorld {
 	int getTime();
 	int getMissileCount();
 	boolean getSound();
+	boolean getPause();
+	void changePause();
 	void increasePlayerSpeed();
 	void init();
 	void jumpToHyperSpace();

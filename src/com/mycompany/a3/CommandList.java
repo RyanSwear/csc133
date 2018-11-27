@@ -5,12 +5,14 @@ import com.codename1.ui.Button;
 
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Border;
 import com.mycompany.a3.Commands.*;
 
-public class CommandList extends Container {
+public class CommandList extends Container implements ActionListener {
 
 	private GameWorldProxy gw;
 	Button turnLeft;
@@ -24,6 +26,8 @@ public class CommandList extends Container {
 	Button fireB;
 	Button hyperB;
 	Button loadB;
+	
+	BGSound bgSound;
 	CommandList(GameWorldProxy gw)
 	{
 		this.gw = gw;
@@ -172,6 +176,9 @@ public class CommandList extends Container {
 		qquitB.getAllStyles().setFgColor(0x2A7041);
 		//Container myContainer = new Container();
 		//myContainer.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+		Button sound = new Button("Change Sound");
+		sound.addActionListener(this);
+		bgSound = new BGSound("rg_hum.wav");
 		
 		
 		this.add(turnLeft);
@@ -198,6 +205,11 @@ public class CommandList extends Container {
 		this.setScrollable(true);
 		
 		
+		
+	}
+	@Override
+	public void actionPerformed(ActionEvent evt) {
+		// TODO Auto-generated method stub
 		
 	}
 }

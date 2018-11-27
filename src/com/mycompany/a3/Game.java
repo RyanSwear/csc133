@@ -3,6 +3,7 @@ package com.mycompany.a3;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.CheckBox;
 import com.codename1.ui.Command;
+import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
@@ -11,9 +12,13 @@ import com.mycompany.a3.Commands.*;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
-import com.codename1.ui.events.ActionEvent; 
+import com.codename1.ui.events.ActionEvent;
+
+import java.io.InputStream;
 import java.lang.String;
 import java.util.Random;
+import com.codename1.media.Media;
+import com.codename1.media.MediaManager;
 class Game extends Form implements Runnable{
 	private GameWorld gw;
 	private GameWorldProxy gwp;
@@ -22,6 +27,10 @@ class Game extends Form implements Runnable{
 	private CommandList cl;
 	private UITimer u;
 	private long start;
+	
+	private Media m;
+	
+	private BGSound sound = new BGSound("rg_hum.wav");
 	public Game()
 	{
 		gw = new GameWorld();
@@ -106,10 +115,13 @@ class Game extends Form implements Runnable{
 		gw.setDimension(this.getWidth(), this.getHeight());
 		gw.setMins(mv.getAbsoluteX(), mv.getAbsoluteY());
 		gw.init();
+		
+		
 		//play();
 		
 		
 	}
+
 	public class PointerListener implements ActionListener{
 			
 			public void actionPerformed(ActionEvent e)
@@ -121,6 +133,8 @@ class Game extends Form implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		
+		
 		Random ran = new Random();
 		int r = ran.nextInt(100);
 		if (r > 98)
@@ -137,6 +151,8 @@ class Game extends Form implements Runnable{
 		gw.tickClock(System.currentTimeMillis() - start);
 		gw.checkCollisions();
 	}
+	
+	
 	
 	
 }

@@ -19,7 +19,7 @@ public class GameWorld extends Observable implements  IGameWorld{
 	private boolean soundOn = true;
 	private boolean pause = false;
 	
-	BGSound sound = new BGSound("rg_hum.wav");
+	BGSound sound = new BGSound("atmosphere.wav");
 	
 	public GameWorld()
 	{
@@ -277,6 +277,8 @@ public class GameWorld extends Observable implements  IGameWorld{
 	public void launchNPSMissiles() 
 	{//make sure a NPS is in game object vector, launch a missile when one is found
 		System.out.println("Detecting NPS...");
+		
+		boolean found = false;
 		IIterator i = go.getIterator();
 		while(i.hasNext())
 			if (i.getNext() instanceof NonPlayerShip)
@@ -289,16 +291,18 @@ public class GameWorld extends Observable implements  IGameWorld{
 				m.setSpeed(5);
 				//set direction, loc
 				go.add(m);
-				System.out.println("NPS fired Missile.");
+				found = true;
+				
 			}//tell all nps to add a missile to game collection
 		this.setChanged();
 		this.notifyObservers(new GameWorldProxy(this));
-		
 		MissileSound ms = new MissileSound("stinger.wav");
-		if (soundOn)
+		if (soundOn && found)
 		{
 			ms.play();
 		}
+		System.out.println("NPS fired Missile.");
+		
 	}
 	public void jumpToHyperSpace()
 	{//call player ship setLocation function
@@ -855,6 +859,7 @@ public class GameWorld extends Observable implements  IGameWorld{
 						
 						rObjs.add(o);
 						rObjs.add(k);
+						//if (getSound()) {k.handleCollision();}
 					}
 					if ((o instanceof Asteroid) && (k instanceof Missile))
 					{
@@ -865,6 +870,7 @@ public class GameWorld extends Observable implements  IGameWorld{
 						}
 						rObjs.add(o);
 						rObjs.add(k);
+						//if (getSound()) {o.handleCollision();}
 					}
 					if ((o instanceof NonPlayerShip) && (k instanceof Missile))
 					{
@@ -874,6 +880,7 @@ public class GameWorld extends Observable implements  IGameWorld{
 							gameScore++;
 							rObjs.add(o);
 							rObjs.add(k);
+							//if (getSound()) {o.handleCollision();}
 						}
 					
 						
@@ -882,17 +889,20 @@ public class GameWorld extends Observable implements  IGameWorld{
 					{
 						rObjs.add(o);
 						rObjs.add(k);
+						//if (getSound()) {k.handleCollision();}
 					}
 					if ((o instanceof PlayerShip) && (k instanceof Asteroid))
 					{
 						rObjs.add(o);
 						rObjs.add(k);
+						//if (getSound()) {k.handleCollision();}
 						lives--;
 					}
 					if ((o instanceof PlayerShip) && (k instanceof NonPlayerShip))
 					{
 						rObjs.add(o);
 						rObjs.add(k);
+						//if (getSound()) {k.handleCollision();}
 						lives--;
 					}
 					if ((o instanceof PlayerShip) && (k instanceof Missile))
@@ -903,6 +913,7 @@ public class GameWorld extends Observable implements  IGameWorld{
 							rObjs.add(o);
 							rObjs.add(k);
 							lives--;
+							//if (getSound()) {k.handleCollision();}
 						}
 						
 					}
@@ -918,7 +929,7 @@ public class GameWorld extends Observable implements  IGameWorld{
 		for(int k = 0; k < rObjs.size(); k++)
 		{
 			GameObject o = rObjs.elementAt(k);
-			o.handleCollision();
+			if (getSound()) {o.handleCollision();}
 			go.remove(o);
 		}
 	}

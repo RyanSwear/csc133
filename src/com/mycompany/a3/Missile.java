@@ -61,6 +61,7 @@ public class Missile extends MoveObject{
 	@Override
 	public void handleCollision() {
 		// TODO Auto-generated method stub
-		
+		MissileCrashSound sound = new MissileCrashSound();
+		sound.play();
 	}
 }

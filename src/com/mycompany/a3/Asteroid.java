@@ -34,7 +34,8 @@ public class Asteroid extends MoveObject{
 	@Override
 	public void handleCollision() {
 		// TODO Auto-generated method stub
-		
+		AsteroidCrashSound sound = new AsteroidCrashSound();
+		sound.play();
 	}
 
 	

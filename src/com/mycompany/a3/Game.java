@@ -137,14 +137,14 @@ class Game extends Form implements Runnable{
 		
 		Random ran = new Random();
 		int r = ran.nextInt(100);
-		if (r > 98)
+		if (r >= 99)
 		{
 			//System.out.println(r);
 			gw.addNPS();
 			gw.addAsteroid();
 		}
 		
-		if (r < 3)
+		if (r <= 1)
 		{
 			gw.launchNPSMissiles();
 		}
